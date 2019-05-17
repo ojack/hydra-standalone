@@ -5,8 +5,7 @@ require('codemirror/addon/hint/javascript-hint')
 require('codemirror/addon/hint/show-hint')
 require('codemirror/addon/selection/mark-selection')
 
-var isShowing = false
-
+var isShowing = true
 var EditorClass = function () {
   var self = this
 

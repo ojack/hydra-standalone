@@ -4,8 +4,8 @@ const Editor = require('./src/editor.js')
 const Canvas = require('./src/canvas.js')
 const loop = require('raf-loop')
 const P5  = require('./src/p5-wrapper.js')
-const electron = require('electron')
-
+ const electron = require('electron')
+//
 const desktopCapturer = electron.desktopCapturer
 
 
@@ -25,36 +25,36 @@ function init () {
   var editor = new Editor
 
   // // hijack source init screen event because doesn't work in Electron
-  //  hydra.s.forEach((source) => {
-  //    source.initScreen = (index) =>  desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
-  //        if (error) throw error
-  //        this.log(sources)
-  //        if (sources.length > index) {
-  //          navigator.mediaDevices.getUserMedia({
-  //            audio: false,
-  //            video: {
-  //              mandatory: {
-  //                chromeMediaSource: 'desktop',
-  //                chromeMediaSourceId: sources[index].id,
-  //              //  minWidth: 1280,
-  //                maxWidth: 1280,
-  //            //    minHeight: 720,
-  //                maxHeight: 720
-  //              }
-  //            }
-  //          }).then((stream) => {
-  //            const video = document.createElement('video')
-  //            video.src = window.URL.createObjectURL(stream)
-  //            video.addEventListener('loadedmetadata', () => {
-  //              video.play().then(() => {
-  //                source.src = video
-  //                source.tex = source.regl.texture(source.src)
-  //              })
-  //            })
-  //          })
-  //        }
-  //      })
-  //  })
+   hydra.s.forEach((source) => {
+     source.initScreen = (index) =>  desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+         if (error) throw error
+      //   this.log(sources)
+         if (sources.length > index) {
+           navigator.mediaDevices.getUserMedia({
+             audio: false,
+             video: {
+               mandatory: {
+                 chromeMediaSource: 'desktop',
+                 chromeMediaSourceId: sources[index].id,
+               //  minWidth: 1280,
+                 maxWidth: 1280,
+             //    minHeight: 720,
+                 maxHeight: 720
+               }
+             }
+           }).then((stream) => {
+             const video = document.createElement('video')
+             video.src = window.URL.createObjectURL(stream)
+             video.addEventListener('loadedmetadata', () => {
+               video.play().then(() => {
+                 source.src = video
+                 source.tex = source.regl.texture(source.src)
+               })
+             })
+           })
+         }
+       })
+   })
   // var menu = new Menu({ editor: editor, hydra: hydra})
   //
   // // get initial code to fill gallery
@@ -94,7 +94,7 @@ function init () {
 // src(s0).mask(shape(30, 0.6, 0.2)).out()
 // `
 
-var code = `osc().out()`
+var code = `osc().luma().out()`
 
 // setTimeout(() => {
   editor.cm.setValue(code)

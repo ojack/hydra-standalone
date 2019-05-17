@@ -19,16 +19,37 @@ function createWindow () {
     x: 100,
     y: 100,
     transparent: true,
-  //  backgroundThrottling: false,
-  //  hasShadow:false
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    alwaysOnTop: true,
+    backgroundThrottling: false,
+  //  hasShadow:false,
     //alwaysOnTop: true,
-    //frame: false
+    frame: false
   })
   // and load the index.html of the app.
 //  mainWindow.loadURL(`file://${__dirname}/hydra-server/public/electron.html`)
   mainWindow.loadURL(`file://${__dirname}/hydra-server/public/index.html`)
+
+  mainWindow.setIgnoreMouseEvents(true)
+
+//   use keybpard short cut to enable/disable mouse events
+// You can use the globalShortcut module to detect keyboard events even when the application does not have keyboard focus.
+//
+// const { app, globalShortcut } = require('electron')
+//
+// app.on('ready', () => {
+//   globalShortcut.register('CommandOrControl+X', () => {
+//     console.log('CommandOrControl+X is pressed')
+//   })
+// })
+//https://electronjs.org/docs/tutorial/keyboard-shortcuts
+
+
+//  mainWindow.loadURL('text.html')
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+ //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
