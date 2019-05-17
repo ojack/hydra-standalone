@@ -1,12 +1,16 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
-app.commandLine.appendSwitch('ignore-gpu-blacklist')
+//app.commandLine.appendSwitch('ignore-gpu-blacklist')
+// --enable-transparent-visuals --disable-gpu i
+
+app.commandLine.appendSwitch('enable-transparent-visuals')
+app.commandLine.appendSwitch('disable-gpu')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-console.log('starting')
+console.log('holla')
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -14,7 +18,7 @@ function createWindow () {
     height: 720,
     x: 100,
     y: 100,
-    transparent: true
+    transparent: true,
   //  backgroundThrottling: false,
   //  hasShadow:false
     //alwaysOnTop: true,
@@ -24,7 +28,7 @@ function createWindow () {
 //  mainWindow.loadURL(`file://${__dirname}/hydra-server/public/electron.html`)
   mainWindow.loadURL(`file://${__dirname}/hydra-server/public/index.html`)
   // Open the DevTools.
-// mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -43,7 +47,9 @@ app.on('certificate-error', function(event, webContents, url, error,
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+//app.on('ready', createWindow)
+
+app.on('ready', () => setTimeout(createWindow, 500));
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

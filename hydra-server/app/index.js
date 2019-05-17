@@ -4,6 +4,12 @@ const Editor = require('./src/editor.js')
 const Canvas = require('./src/canvas.js')
 const loop = require('raf-loop')
 const P5  = require('./src/p5-wrapper.js')
+const electron = require('electron')
+
+const desktopCapturer = electron.desktopCapturer
+
+
+
 //const Gallery  = require('./src/gallery.js')
 //const Menu = require('./src/menu.js')
 
@@ -16,7 +22,39 @@ function init () {
   canvas.size()
 //  var pb = new PatchBay()
   var hydra = new HydraSynth({ canvas: canvas.element, autoLoop: false })
-  var editor = new Editor()
+  var editor = new Editor
+
+  // // hijack source init screen event because doesn't work in Electron
+  //  hydra.s.forEach((source) => {
+  //    source.initScreen = (index) =>  desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+  //        if (error) throw error
+  //        this.log(sources)
+  //        if (sources.length > index) {
+  //          navigator.mediaDevices.getUserMedia({
+  //            audio: false,
+  //            video: {
+  //              mandatory: {
+  //                chromeMediaSource: 'desktop',
+  //                chromeMediaSourceId: sources[index].id,
+  //              //  minWidth: 1280,
+  //                maxWidth: 1280,
+  //            //    minHeight: 720,
+  //                maxHeight: 720
+  //              }
+  //            }
+  //          }).then((stream) => {
+  //            const video = document.createElement('video')
+  //            video.src = window.URL.createObjectURL(stream)
+  //            video.addEventListener('loadedmetadata', () => {
+  //              video.play().then(() => {
+  //                source.src = video
+  //                source.tex = source.regl.texture(source.src)
+  //              })
+  //            })
+  //          })
+  //        }
+  //      })
+  //  })
   // var menu = new Menu({ editor: editor, hydra: hydra})
   //
   // // get initial code to fill gallery
@@ -36,25 +74,27 @@ function init () {
   // })
   // menu.sketches = sketches
 
-  var code = `
-  // initialize video element
-vid = document.createElement('video')
-vid.loop = true
-window.onclick = () => { vid.play()}
+//   var code = `
+//   // initialize video element
+// vid = document.createElement('video')
+// vid.loop = true
+// window.onclick = () => { vid.play()}
+//
+//
+// // load video
+// vid.src = 'https://ia801207.us.archive.org/24/items/spheres_201608/spheres_201608.mp4'
+//
+// // use video as source in hydra
+// s0.init({src: vid})
+//
+// // luma key
+// src(s0).luma().out()
+//
+// // circular mask on the video
+// src(s0).mask(shape(30, 0.6, 0.2)).out()
+// `
 
-
-// load video
-vid.src = 'https://ia801207.us.archive.org/24/items/spheres_201608/spheres_201608.mp4'
-
-// use video as source in hydra
-s0.init({src: vid})
-
-// luma key
-src(s0).luma().out()
-
-// circular mask on the video
-src(s0).mask(shape(30, 0.6, 0.2)).out()
-`
+var code = `osc().out()`
 
 // setTimeout(() => {
   editor.cm.setValue(code)
