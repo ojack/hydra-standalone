@@ -19,7 +19,7 @@ function init () {
   hydra = new HydraSynth({ canvas: canvas, autoLoop: false })
   editor = new Editor({ loadFromStorage: true})
 
-  //main.init(hydra)
+  main.init(hydra)
 
 
   utils.initElectron(hydra)
