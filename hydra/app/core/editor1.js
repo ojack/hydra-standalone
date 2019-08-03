@@ -15,20 +15,13 @@ class Editor {
 
   constructor({
     loadFromStorage = true
-  }) {
+  } = {}) {
     var self = this
     var container = document.createElement('div')
     container.setAttribute('id','editor-container')
     var el = document.createElement('TEXTAREA')
     document.body.appendChild(container)
     container.appendChild(el)
-    // window.onbeforeunload = function () {
-    //    alert('unload!')
-    //   console.log('unloading!', this.cm.value)
-    //   storage.set('code', { foo: 'bar' }, function(error) {
-    //     if (error) throw error;
-    //   });
-    // }
 
       this.cm = CodeMirror.fromTextArea(el, {
         theme: 'tomorrow-night-eighties',
@@ -109,15 +102,15 @@ class Editor {
     var self = this
     var jsString = arg
     var isError = false
-    if(window.update) {
-      try {
-        window.update(0)
-      } catch (e) {
-        isError = true
-        self.log(e.message, "log-error")
-        console.log('RAN IS UPDATE AND GOT ERROR')
-      }
-    }
+    // if(window.update) {
+    //   try {
+    //     window.update(0)
+    //   } catch (e) {
+    //     isError = true
+    //     self.log(e.message, "log-error")
+    //     console.log('RAN IS UPDATE AND GOT ERROR')
+    //   }
+    // }
     if(!isError) {
       try {
         eval(jsString)

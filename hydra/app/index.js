@@ -4,7 +4,7 @@ const loop = require('raf-loop')
 // Core
 const HydraSynth = require('hydra-synth')
 // const Editor = require('./core/editor.js')
-const Editor = require('./core/editor1.js')
+const Editor = require('./core/editor.js')
 
 const main = require('./hydra-pixelsynth.js')
 
@@ -17,7 +17,7 @@ function init () {
   canvas.setAttribute('id', 'hydra-canvas')
   document.body.appendChild(canvas)
   hydra = new HydraSynth({ canvas: canvas, autoLoop: false })
-  editor = new Editor()
+  editor = new Editor({ loadFromStorage: true})
 
   //main.init(hydra)
 
@@ -36,6 +36,9 @@ function init () {
 // loop function
   var engine = loop(function(dt) {
     hydra.tick(dt)
+    if(window.update) {
+      try { window.update(dt) } catch (e) {editor.log(e.message, "log-error")}
+    }
   //  main.update(dt)
     }).start()
 }

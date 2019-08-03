@@ -5,11 +5,20 @@ require('codemirror/addon/hint/javascript-hint')
 require('codemirror/addon/hint/show-hint')
 require('codemirror/addon/selection/mark-selection')
 
-var isShowing = true
-var EditorClass = function () {
-  var self = this
+const storage = require('electron-json-storage')
 
-  this.cm = CodeMirror.fromTextArea(document.getElementById('code'), {
+var isShowing = true
+var Editor = function ({
+  loadFromStorage = true
+} = {}) {
+  var self = this
+  var container = document.createElement('div')
+  container.setAttribute('id','editor-container')
+  var el = document.createElement('TEXTAREA')
+  document.body.appendChild(container)
+  container.appendChild(el)
+
+  this.cm = CodeMirror.fromTextArea(el, {
     theme: 'tomorrow-night-eighties',
     value: 'hello',
     mode: {name: 'javascript', globalVars: true},
@@ -63,81 +72,73 @@ var EditorClass = function () {
   this.logElement = document.createElement('div')
   this.logElement.className = "console cm-s-tomorrow-night-eighties"
   document.body.appendChild(this.logElement)
-  this.log("hi")
 
 
-  // TO DO: add show code param
-  let searchParams = new URLSearchParams(window.location.search)
-  let showCode = searchParams.get('show-code')
+  if(loadFromStorage) {
+    storage.get('code', function(error, data) {
+      if(data) {
+        self.cm.setValue(data)
+        self.evalAll()
+      } else {
+        self.cm.setValue('osc().out()')
+        self.evalAll()
+      }
+      if (error) throw error;
+    });
 
-  //  if(showCode == "false" || isShowing == "false") {
-      console.log("not showing code")
-
-
-      // hide editor
-    //   var l = document.getElementsByClassName('CodeMirror-scroll')[0]
-    // //  var m = document.getElementById('modal-header')
-    //     l.style.opacity = 0
-    //     self.logElement.style.opacity  = 0
-    // //    m.style.opacity = 0
-    //     isShowing = false
-  //  }
-  //}
+    window.onbeforeunload = function (e) {
+      e.preventDefault()
+      storage.set('code', self.cm.getValue(), function(error) {
+        if (error) throw error;
+      })
+    }
+  }
 }
 
-EditorClass.prototype.clear = function () {
+Editor.prototype.clear = function () {
   this.cm.setValue('\n \n // Type some code on a new line (such as "osc().out()"), and press CTRL+shift+enter')
 }
 
-EditorClass.prototype.saveSketch = function(code) {
+Editor.prototype.saveSketch = function(code) {
   console.log('no function for save sketch has been implemented')
 }
 
-EditorClass.prototype.shareSketch = function(code) {
+Editor.prototype.shareSketch = function(code) {
   console.log('no function for share sketch has been implemented')
 }
 
-// EditorClass.prototype.saveExample = function(code) {
+// Editor.prototype.saveExample = function(code) {
 //   console.log('no function for save example has been implemented')
 // }
 
-EditorClass.prototype.evalAll = function (callback) {
+Editor.prototype.evalAll = function (callback) {
   this.eval(this.cm.getValue(), function (code, error){
     if(callback) callback(code, error)
   })
 }
 
-EditorClass.prototype.eval = function (arg, callback) {
+Editor.prototype.eval = function (arg, callback) {
   var self = this
   var jsString = arg
   var isError = false
-  if(window.update) {
+
+  if (!isError){
     try {
-      window.update(0)
+      eval(jsString)
+      self.log(jsString)
     } catch (e) {
       isError = true
       self.log(e.message, "log-error")
     }
   }
-  try {
-    eval(jsString)
-    self.log(jsString)
-  } catch (e) {
-    isError = true
-  //  console.log("logging", e.message)
-    self.log(e.message, "log-error")
-    //console.log('ERROR', JSON.stringify(e))
-  }
-//  console.log('callback is', callback)
   if(callback) callback(jsString, isError)
-
 }
 
-EditorClass.prototype.log = function(msg, className = "") {
+Editor.prototype.log = function(msg, className = "") {
   this.logElement.innerHTML =` >> <span class=${className}> ${msg} </span> `
 }
 
-EditorClass.prototype.selectCurrentBlock = function (editor) { // thanks to graham wakefield + gibber
+Editor.prototype.selectCurrentBlock = function (editor) { // thanks to graham wakefield + gibber
   var pos = editor.getCursor()
   var startline = pos.line
   var endline = pos.line
@@ -163,4 +164,4 @@ EditorClass.prototype.selectCurrentBlock = function (editor) { // thanks to grah
   }
 }
 
-module.exports = EditorClass
+module.exports = Editor
