@@ -115,16 +115,19 @@ class Editor {
       } catch (e) {
         isError = true
         self.log(e.message, "log-error")
+        console.log('RAN IS UPDATE AND GOT ERROR')
       }
     }
-    try {
-      eval(jsString)
-      self.log(jsString)
-    } catch (e) {
-      isError = true
-    //  console.log("logging", e.message)
-      self.log(e.message, "log-error")
-      //console.log('ERROR', JSON.stringify(e))
+    if(!isError) {
+      try {
+        eval(jsString)
+        self.log(jsString)
+      } catch (e) {
+        isError = true
+      //  console.log("logging", e.message)
+        self.log(e.message, "log-error")
+        //console.log('ERROR', JSON.stringify(e))
+      }
     }
   //  console.log('callback is', callback)
   //console.log(this.cm.getValue())
