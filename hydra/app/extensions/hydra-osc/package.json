@@ -1,0 +1,14 @@
+{
+  "name": "hydra-osc",
+  "version": "1.0.0",
+  "description": "OSC messages for hydra",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Olivia Jack",
+  "license": "ISC",
+  "dependencies": {
+    "osc-min": "^1.1.1"
+  }
+}

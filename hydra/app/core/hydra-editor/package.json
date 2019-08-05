@@ -1,0 +1,15 @@
+{
+  "name": "hydra-editor",
+  "version": "1.0.0",
+  "description": "editor for hydra-synth based on codemirror",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ojack",
+  "license": "ISC",
+  "dependencies": {
+    "codemirror": "^5.48.2",
+    "electron-json-storage": "^4.1.6"
+  }
+}
