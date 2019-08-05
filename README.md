@@ -1,6 +1,6 @@
 ### Standalone version of hydra built using electron
 
-The goal of this repo is to create a standalone version of Hydra that is easier to modify and extend, and define a method for creating and sharing extensions related to live coding with hydra.
+The goal of this repo is to create a standalone version of Hydra that is easier to modify and extend, and define a method for creating and sharing extensions related to live coding with hydra. For further documentation of hydra, please see: https://hydra-editor.glitch.me/
 
 ### To install:
 - 1. clone this repo
@@ -18,10 +18,10 @@ For more information about Electron, and available APIs, see the documentation a
 
 ### To do:
 The standalone version of hydra is just getting started. The following are things that have yet to be implemented:
--- way to save and load local files from the main window menu
--- example for loading images and videos, way of adjusting scaling of images and videos
--- flash highlight code on execution
--- better documentation
--- help menu with links to documentation
--- documentation for developing and publishing extensions
--- README for individual extensions
+- way to save and load local files from the main window menu
+- example for loading images and videos, way of adjusting scaling of images and videos
+- flash highlight code on execution
+- better documentation
+- help menu with links to documentation
+- documentation for developing and publishing extensions
+- README for individual extensions
