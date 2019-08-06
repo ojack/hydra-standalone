@@ -76,7 +76,7 @@ var Editor = function ({
 
   if(loadFromStorage) {
     storage.get('code', function(error, data) {
-      if(data) {
+      if(data && typeof data === 'string') {
         self.cm.setValue(data)
         self.evalAll()
       } else {
@@ -92,6 +92,9 @@ var Editor = function ({
         if (error) throw error;
       })
     }
+  } else {
+    self.cm.setValue('osc().out()')
+    self.evalAll()
   }
 }
 
