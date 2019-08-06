@@ -4,12 +4,13 @@ const loop = require('raf-loop')
 // Core
 const HydraSynth = require('hydra-synth')
 const Editor = require('./core/hydra-editor')
+const Clock = require('./extensions/extra/clock')
 
 function init () {
   // init hydra
   hydra = new HydraSynth({ canvas: initCanvas(), autoLoop: false })
   editor = new Editor({ loadFromStorage: true})
-
+  window.Clock = Clock
   // special functions for running hydra in electron
   utils.initElectron(hydra)
 

@@ -45,3 +45,6 @@ class Clock {
     this.currentVal = val || 0
   }
 }
+
+
+module.exports = Clock
