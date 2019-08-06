@@ -16,6 +16,12 @@ Common methods to be implemented in extensions are an 'init' method which receiv
 
 For more information about Electron, and available APIs, see the documentation at: https://electronjs.org/
 
+### Troubleshooting
+If you get the error (regl) webgl not supported, add the following line to './hydra/electron-start.js, after the line
+`const {app, BrowserWindow} = electron`:
+`app.commandLine.appendSwitch('ignore-gpu-blacklist')`
+
+
 ### To do:
 The standalone version of hydra is just getting started. The following are things that have yet to be implemented:
 - way to save and load local files from the main window menu

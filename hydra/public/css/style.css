@@ -35,6 +35,10 @@ canvas {
     z-index: 5;
 }
 
+#hydra-container {
+
+}
+
 #hydra-canvas {
   position: absolute;
   top: 0px;
@@ -76,4 +80,9 @@ canvas {
 
 .log-error {
   color: #f00;
+}
+
+.hydra-flash {
+  color: #00ff00;
+  background: rgba(255, 0, 0, 0.5) !important;
 }

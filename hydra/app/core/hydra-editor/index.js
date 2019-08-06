@@ -67,7 +67,7 @@ var Editor = function ({
     }
   })
 
-  this.cm.markText({line: 0, ch: 0}, {line: 6, ch: 42}, {className: 'styled-background'})
+  this.cm.markText({line: 0, ch: 0}, {line: 6, ch: 42}, {className: 'hydra-flash'})
   this.cm.refresh()
   this.logElement = document.createElement('div')
   this.logElement.className = "console cm-s-tomorrow-night-eighties"
