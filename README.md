@@ -19,7 +19,7 @@ For more information about Electron, and available APIs, see the documentation a
 ### Troubleshooting
 If you get the error (regl) webgl not supported, add the following line to './hydra/electron-start.js, after the line
 `const {app, BrowserWindow} = electron`:
-`app.commandLine.appendSwitch('ignore-gpu-blacklist')`
+```app.commandLine.appendSwitch('ignore-gpu-blacklist')```
 
 
 ### To do:
