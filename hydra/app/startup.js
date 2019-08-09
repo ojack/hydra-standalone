@@ -5,6 +5,9 @@ const loop = require('raf-loop')
 const HydraSynth = require('hydra-synth')
 const Editor = require('./core/hydra-editor')
 
+// Extensions
+window.Clock = require('./extensions/clock.js')
+
 function init () {
   // init hydra
   hydra = new HydraSynth({ canvas: initCanvas(), autoLoop: false })

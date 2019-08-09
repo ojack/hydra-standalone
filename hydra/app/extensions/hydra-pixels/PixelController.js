@@ -48,25 +48,25 @@ class PixelController {
      this.ctx.strokeStyle = "#0000FF";
      this.ctx.strokeRect(this.x - width/2, this.y - width/2, width, width)
      this.ctx.strokeRect(this.x - 4, this.y - 4, 4, 4)
-
-     var sampleWidth = 90
-     for(var i = 0; i < this.width; i++){
-       this.ctx.fillStyle = 'rgb(' + this.pixels[0+4*i] + ',' + this.pixels[1+4*i] + ',' + this.pixels[2+4*i] + ')'
-       this.ctx.fillRect(1000 + sampleWidth * i, 20, sampleWidth, sampleWidth)
-
-       // draw red channel
-       this.ctx.fillStyle = 'rgb(' + this.pixels[0+4*i] + ', 0, 0)'
-       this.ctx.fillRect(1000 + sampleWidth * i, 20 + sampleWidth, sampleWidth/3, sampleWidth/3)
-
-       // draw green channel
-       this.ctx.fillStyle = 'rgb(0,' + this.pixels[1+4*i] + ', 0)'
-       this.ctx.fillRect(1000 + sampleWidth * i + sampleWidth/3, 20 + sampleWidth, sampleWidth/3, sampleWidth/3)
-
-       // draw green channel
-       this.ctx.fillStyle = 'rgb(0, 0,' + this.pixels[2+4*i] + ')'
-       this.ctx.fillRect(1000 + sampleWidth * i + sampleWidth * 2/3, 20 + sampleWidth, sampleWidth/3, sampleWidth/3)
-
-     }
+     //
+     // var sampleWidth = 90
+     // for(var i = 0; i < this.width; i++){
+     //   this.ctx.fillStyle = 'rgb(' + this.pixels[0+4*i] + ',' + this.pixels[1+4*i] + ',' + this.pixels[2+4*i] + ')'
+     //   this.ctx.fillRect(1000 + sampleWidth * i, 20, sampleWidth, sampleWidth)
+     //
+     //   // draw red channel
+     //   this.ctx.fillStyle = 'rgb(' + this.pixels[0+4*i] + ', 0, 0)'
+     //   this.ctx.fillRect(1000 + sampleWidth * i, 20 + sampleWidth, sampleWidth/3, sampleWidth/3)
+     //
+     //   // draw green channel
+     //   this.ctx.fillStyle = 'rgb(0,' + this.pixels[1+4*i] + ', 0)'
+     //   this.ctx.fillRect(1000 + sampleWidth * i + sampleWidth/3, 20 + sampleWidth, sampleWidth/3, sampleWidth/3)
+     //
+     //   // draw green channel
+     //   this.ctx.fillStyle = 'rgb(0, 0,' + this.pixels[2+4*i] + ')'
+     //   this.ctx.fillRect(1000 + sampleWidth * i + sampleWidth * 2/3, 20 + sampleWidth, sampleWidth/3, sampleWidth/3)
+     //
+     // }
 
 
   }
