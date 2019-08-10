@@ -6,6 +6,9 @@ const HydraSynth = require('hydra-synth')
 const Editor = require('./core/hydra-editor')
 const makeClock = require('./extensions/extra/clock')
 
+// Extensions
+window.Clock = require('./extensions/clock.js')
+
 function init () {
   // init hydra
   hydra = new HydraSynth({ canvas: initCanvas(), autoLoop: false })

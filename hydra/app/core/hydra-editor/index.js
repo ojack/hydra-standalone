@@ -67,7 +67,7 @@ var Editor = function ({
     }
   })
 
-  this.cm.markText({line: 0, ch: 0}, {line: 6, ch: 42}, {className: 'styled-background'})
+  this.cm.markText({line: 0, ch: 0}, {line: 6, ch: 42}, {className: 'hydra-flash'})
   this.cm.refresh()
   this.logElement = document.createElement('div')
   this.logElement.className = "console cm-s-tomorrow-night-eighties"
@@ -76,7 +76,7 @@ var Editor = function ({
 
   if(loadFromStorage) {
     storage.get('code', function(error, data) {
-      if(data) {
+      if(data && typeof data === 'string') {
         self.cm.setValue(data)
         self.evalAll()
       } else {
@@ -92,6 +92,9 @@ var Editor = function ({
         if (error) throw error;
       })
     }
+  } else {
+    self.cm.setValue('osc().out()')
+    self.evalAll()
   }
 }
 

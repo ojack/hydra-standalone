@@ -4,7 +4,7 @@ const electron = require('electron')
 const {app, BrowserWindow} = electron
 
 // enable hydra on OS with outdated gpu
-//app.commandLine.appendSwitch('ignore-gpu-blacklist')
+// app.commandLine.appendSwitch('ignore-gpu-blacklist')
 
 // enable transparent visuals
 // app.commandLine.appendSwitch('enable-transparent-visuals')
