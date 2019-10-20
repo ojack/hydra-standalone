@@ -8,6 +8,7 @@ const Editor = require('./core/hydra-editor')
 // Extensions
 const PixelSynth = require('./extensions/hydra-pixels')
 const OscManager = require('./extensions/hydra-osc')
+const MidiManager = require('./extensions/hydra-midi')
 
 function init () {
   // init hydra
@@ -20,6 +21,9 @@ function init () {
   window.pixels = new PixelSynth({ gl: hydra.regl._gl, parent: document.body})
   window.msg = new OscManager()
 
+  // use like: osc( () => midi.cc[18]  ).out()
+  window.midi = new MidiManager()
+  
   editor = new Editor({ loadFromStorage: true})
 
 // loop function run on each frame
