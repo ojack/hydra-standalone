@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "browserify": "^16.2.3",
-    "electron": "^4.1.4",
+    "electron": "^7.2.4",
     "standard": "^11.0.1",
     "watchify": "^3.11.1"
   }
