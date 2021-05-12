@@ -10,7 +10,7 @@
   "author": "Olivia Jack",
   "license": "AGPL",
   "dependencies": {
-    "codemirror": "^5.48.2",
+    "codemirror": "^5.58.2",
     "electron-json-storage": "^4.1.6",
     "getusermedia": "^2.0.1",
     "hydra-synth": "^1.0.25",
