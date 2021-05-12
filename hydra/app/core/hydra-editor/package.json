@@ -9,7 +9,7 @@
   "author": "ojack",
   "license": "ISC",
   "dependencies": {
-    "codemirror": "^5.48.2",
+    "codemirror": "^5.58.2",
     "electron-json-storage": "^4.1.6"
   }
 }
