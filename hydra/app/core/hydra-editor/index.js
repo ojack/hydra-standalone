@@ -4,6 +4,7 @@ require('codemirror/mode/javascript/javascript')
 require('codemirror/addon/hint/javascript-hint')
 require('codemirror/addon/hint/show-hint')
 require('codemirror/addon/selection/mark-selection')
+require('codemirror/addon/comment/comment')
 
 const storage = require('electron-json-storage')
 
@@ -55,6 +56,11 @@ var Editor = function ({
         var c = instance.getCursor()
         var s = instance.getLine(c.line)
         self.eval(s)
+      },
+      'Ctrl-H': function (instance) {
+        var c = instance.getCursor()
+        var s = instance.getLine(c.line)
+        instance.toggleComment(s)
       },
       'Shift-Ctrl-S': function (instance) {
         screencap()
